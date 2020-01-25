@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
- 
 <head>
-
     <style>
 	body {
   background-color: gray;
@@ -14,32 +12,24 @@
 	font-family: "Times New Roman", Times, serif;
 }
 	}
-	
-        .replay {
+	 .replay {
             padding: 5px;
         }
-        
         button {
             display: block;
-           
             min-width: 100px;
             font-size: 1.8em;
             font-family: sans-serif;
             border-radius: 15px;
             margin-top: 5px;
-			border-color: white;
-			
-			
-			
+			border-color: white;	
         }
         .output{
-		
 		font-size: 25px;
 		}
         input {
             font-size: 1.5em;
         }
-        
         .message {
             margin: 10px 0;
 			align: center;
@@ -47,25 +37,21 @@
         }
     </style>
 </head>
- 
 <body >
-
 <div style="text-align:center">
 <div class ="b">
 <b>Welcome to the game... <br></b>
 Guess a Number From 1 to 20 
 </div>
-
-    <div class="output"align="center" >
+<div class="output"align="center" >
         <div class="message"></div>
         <input type="number">
         <button><b><i>Check</i></b></button>
     </div>
-	
-    <script>
-        let game = {
-            "min": 1
-            , "max": 20
+	<script>
+        let game= 
+		{
+            "min": 1,"max": 10
         };
         document.addEventListener("DOMContentLoaded", function () {
             console.log("Ready");
@@ -76,63 +62,65 @@ Guess a Number From 1 to 20
             game.btn.addEventListener("click", guessValue);
             init();
         })
- 
-        function guessValue() {
-            if (game.btn.classList.contains("replay")) {
+        function guessValue() 
+		{
+            if (game.btn.classList.contains("replay"))
+			{
                 init();
-                game.btn.innerHTML = "Guess";
-                game.guessInput.style.display = "block";
+                game.btn.innerHTML="Guess";
+                game.guessInput.style.display="block";
                 game.btn.classList.remove("replay");
             }
             else {
                 game.guesses++;
-                let tempGuess = game.guessInput.value;
-                game.guessInput.value = "";
-                tempGuess = parseInt(tempGuess);
-                if (isNaN(tempGuess)) {
-                    message("Please enter only Digits", "red");
+                let tempGuess=game.guessInput.value;
+                game.guessInput.value="";
+                tempGuess=parseInt(tempGuess);
+                if (isNaN(tempGuess)) 
+				{
+                    message("Please enter only Digits","red");
                 }
-                 else if (tempGuess === game.num) {
-                    message("Correct guess of " + game.num + " in " + game.guesses + " guesses", "green");
+                 else if (tempGuess===game.num) 
+				 {
+                    message("Correct guess of" + game.num +" in  "+game.guesses+"guesses","green");
                     gameOver();
                 }
                 else {
-                    let holder = tempGuess > game.num ? {
-                        "c": "blue"
-                        , "m": "Was Lower"
+                    let holder=tempGuess>game.num ? 
+					{
+                        "c":"blue","m":"Your Guess is High"
                     } : {
-                        "c": "purple"
-                        , "m": "Was Higher"
+                        "c":"purple","m":"Your Guess Is Low"
                     };
-                    message(holder.m, holder.c);
+                    message(holder.m,holder.c);
                 }
                 console.log(game.num);
             }
         }
- 
-        function gameOver() {
-            game.btn.innerHTML = "Restart Game";
-            game.guessInput.style.display = "none";
+        function gameOver()
+		{
+            game.btn.innerHTML="Restart Game";
+            game.guessInput.style.display="none";
             game.btn.classList.add("replay");
-        }
- 
-        function init() {
-            game.guesses = 0;
-            game.num = ranNumber(game.min, game.max);
+        } 
+        function init()
+		{
+            game.guesses=0;
+            game.num=ranNumber(game.min, game.max);
             let tempMes = " " ;
-            message(tempMes, "#15A39C");
+            message(tempMes,"#15A39C");
         }
- 
-        function ranNumber(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
+         function ranNumber(min, max)
+		 {
+            return Math.floor(Math.random()*(max-min+1)+min);
         }
- 
-        function message(mes, clr) {
+        function message(mes)
+		{
             game.message.innerHTML = mes;
-            game.message.style.color =  "black";
-            game.guessInput.style.borderColor =  "black";
-            game.btn.style.backgroundColor =  "black";
-            game.btn.style.color = "white";
+            game.message.style.color="black";
+            game.guessInput.style.borderColor="red";
+            game.btn.style.backgroundColor="#15A39C";
+            game.btn.style.color="white";
         }
     </script>
 </body>
